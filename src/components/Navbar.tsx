@@ -12,7 +12,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="relative bg-[#293351] text-white p-4">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#293351] text-white p-4">
       {/* Top-level row: Logo (left) + Hamburger (right) */}
       <div className="flex items-center justify-between">
         {/* Logo */}
@@ -54,7 +54,7 @@ const Navbar = () => {
             </AnimatePresence>
           </button>
 
-          {/* Dropdown with a scale/fade animation (no fixed width) */}
+          {/* Dropdown with a scale/fade animation */}
           <div
             className={`
               absolute right-0 mt-2 bg-[#293351]
@@ -62,7 +62,7 @@ const Navbar = () => {
               ${isOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"}
             `}
           >
-            {/* Right-aligned items so text is directly under the icon */}
+            {/* Right-aligned items */}
             <div className="flex flex-col items-end text-right p-4 space-y-2 transition-opacity duration-300 delay-75">
               <AnimatePresence>
                 {isOpen &&
