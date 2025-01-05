@@ -27,10 +27,15 @@ const Hero = () => {
     console.log("Particles container loaded:", container);
   };
 
-  const scrollToNews = () => {
-    const newsSection = document.getElementById('latest-news');
-    if (newsSection) {
-      newsSection.scrollIntoView({ behavior: 'smooth' });
+  const scrollToResearch = () => {
+    const researchSection = document.getElementById('research');
+    if (researchSection) {
+      const navbarHeight = 76; // Height of the fixed navbar
+      const targetPosition = researchSection.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -45,7 +50,7 @@ const Hero = () => {
       interactivity: {
         events: {
           onClick: { enable: false }, 
-          onHover: { enable: true , mode: "repulse"}, 
+          onHover: { enable: true , mode: "repulse" }, 
         },
       },
       particles: {
@@ -141,7 +146,7 @@ const Hero = () => {
 
         {/* Scroll Down Arrow */}
         <motion.button
-          onClick={scrollToNews}
+          onClick={scrollToResearch}
           className="absolute bottom-12 text-white/60 hover:text-white/90 transition-colors cursor-pointer"
           initial={{ opacity: 0, y: 20 }}
           animate={{ 
@@ -161,7 +166,7 @@ const Hero = () => {
               ease: "easeInOut",
             }}
           >
-            <ChevronDownIcon className="h-9 w-9 stroke-[1]" />
+            <ChevronDownIcon className="h-12 w-12 stroke-[1.5]" />
           </motion.div>
         </motion.button>
       </div>

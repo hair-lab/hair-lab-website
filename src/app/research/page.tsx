@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
+import { publications, getCategories, Publication } from '@/data/publications';
 
 interface ResearchProject {
   title: string;
@@ -36,64 +39,145 @@ const projects: ResearchProject[] = [
 ];
 
 export default function ResearchPage() {
-  const [filter, setFilter] = useState<'all' | 'ongoing' | 'completed'>('all');
+  const [projectFilter, setProjectFilter] = useState<'all' | 'ongoing' | 'completed'>('all');
+  const [pubCategory, setPubCategory] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<'year' | 'title'>('year');
   
   const filteredProjects = projects.filter(project => 
-    filter === 'all' ? true : project.status === filter
+    projectFilter === 'all' ? true : project.status === projectFilter
   );
+
+  const categories = ['all', ...getCategories()];
+  
+  const filteredAndSortedPubs = publications
+    .filter(pub => pubCategory === 'all' ? true : pub.category === pubCategory)
+    .sort((a, b) => {
+      if (sortBy === 'year') {
+        return b.year - a.year;
+      }
+      return a.title.localeCompare(b.title);
+    });
 
   return (
     <div className="max-w-6xl mx-auto py-16 px-6">
-      <h1 className="text-4xl font-bold mb-8">Research</h1>
+      <h1 className="text-4xl font-bold mb-12">Research</h1>
       
-      <div className="flex gap-4 mb-8">
-        {['all', 'ongoing', 'completed'].map((status) => (
-          <button
-            key={status}
-            onClick={() => setFilter(status as typeof filter)}
-            className={`px-4 py-2 rounded-lg border ${
-              filter === status 
-                ? 'bg-gray-800 text-white border-gray-800' 
-                : 'border-gray-200 text-gray-700 hover:bg-gray-50'
-            }`}
-          >
-            {status.charAt(0).toUpperCase() + status.slice(1)}
-          </button>
-        ))}
-      </div>
+      {/* Projects Section */}
+      <section className="mb-16">
+        <h2 className="text-2xl font-bold mb-6">Current Projects</h2>
+        <div className="flex gap-4 mb-8">
+          {['all', 'ongoing', 'completed'].map((status) => (
+            <button
+              key={status}
+              onClick={() => setProjectFilter(status as typeof projectFilter)}
+              className={`px-4 py-2 rounded-lg border ${
+                projectFilter === status 
+                  ? 'bg-gray-800 text-white border-gray-800' 
+                  : 'border-gray-200 text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              {status.charAt(0).toUpperCase() + status.slice(1)}
+            </button>
+          ))}
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProjects.map((project) => (
-          <div 
-            key={project.title}
-            className="border border-gray-200 rounded-lg overflow-hidden hover:border-gray-300 transition-colors"
-          >
-            <div className="relative aspect-video bg-gray-100">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div className="p-6">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm text-gray-600">{project.category}</span>
-                <span className={`text-sm px-2 py-1 rounded ${
-                  project.status === 'ongoing' 
-                    ? 'bg-green-100 text-green-800'
-                    : 'bg-blue-100 text-blue-800'
-                }`}>
-                  {project.status}
-                </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project) => (
+            <div 
+              key={project.title}
+              className="border border-gray-200 rounded-lg overflow-hidden hover:border-gray-300 transition-colors"
+            >
+              <div className="relative aspect-video bg-gray-100">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
-              <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
-              <p className="text-gray-700">{project.description}</p>
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm text-gray-600">{project.category}</span>
+                  <span className={`text-sm px-2 py-1 rounded ${
+                    project.status === 'ongoing' 
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-blue-100 text-blue-800'
+                  }`}>
+                    {project.status}
+                  </span>
+                </div>
+                <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
+                <p className="text-gray-700">{project.description}</p>
+              </div>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Publications Section */}
+      <section>
+        <h2 className="text-2xl font-bold mb-6">Publications</h2>
+        <div className="flex flex-wrap gap-4 mb-8">
+          <div className="flex items-center gap-4">
+            <label className="text-gray-700">Category:</label>
+            <select
+              value={pubCategory}
+              onChange={(e) => setPubCategory(e.target.value)}
+              className="px-4 py-2 border border-gray-200 rounded-lg"
+            >
+              {categories.map(cat => (
+                <option key={cat} value={cat}>
+                  {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                </option>
+              ))}
+            </select>
           </div>
-        ))}
-      </div>
+          <div className="flex items-center gap-4">
+            <label className="text-gray-700">Sort by:</label>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as 'year' | 'title')}
+              className="px-4 py-2 border border-gray-200 rounded-lg"
+            >
+              <option value="year">Year (Latest first)</option>
+              <option value="title">Title (A-Z)</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          {filteredAndSortedPubs.map((pub) => (
+            <Link 
+              href={pub.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={`${pub.title}-${pub.year}`}
+              className="block border border-gray-200 rounded-lg p-6 hover:border-gray-300 hover:bg-gray-50 transition-all group"
+            >
+              <div className="flex justify-between items-start gap-4">
+                <div className="flex-grow">
+                  <div className="flex items-start gap-2">
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors">{pub.title}</h3>
+                    <ArrowUpRightIcon className="h-5 w-5 text-gray-400 group-hover:text-blue-600 transition-colors flex-shrink-0 opacity-0 group-hover:opacity-100" />
+                  </div>
+                  <p className="text-gray-600 mb-2">{pub.authors.join(", ")}</p>
+                  <p className="text-gray-700 mb-1">{pub.venue}</p>
+                  {pub.citation && (
+                    <p className="text-gray-500 text-sm">{pub.citation}</p>
+                  )}
+                </div>
+                <div className="flex flex-col items-end flex-shrink-0">
+                  <span className="text-gray-500">{pub.year}</span>
+                  <span className="text-sm px-2 py-1 bg-gray-100 rounded mt-2">
+                    {pub.category}
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
