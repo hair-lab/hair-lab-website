@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow">
+        <main className="flex-grow pt-24"> {/* Added pt-24 for 96px top padding */}
           {children}
         </main>
         <Footer />

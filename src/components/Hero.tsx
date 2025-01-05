@@ -10,6 +10,7 @@ import {
 } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { motion } from "framer-motion";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 const Hero = () => {
   const [init, setInit] = useState(false);
@@ -26,11 +27,18 @@ const Hero = () => {
     console.log("Particles container loaded:", container);
   };
 
+  const scrollToNews = () => {
+    const newsSection = document.getElementById('latest-news');
+    if (newsSection) {
+      newsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const options: ISourceOptions = useMemo(
     () => ({
       background: {
         color: {
-          value: "#293351", // Matches your design
+          value: "#293351", 
         },
       },
       fpsLimit: 120,
@@ -54,24 +62,24 @@ const Hero = () => {
           enable: true,
           outModes: { default: OutMode.out },
           random: false,
-          speed: 2, // Smooth, slow particle motion
+          speed: 2,
           straight: false,
         },
         number: {
-          value: 150, // Total number of particles
+          value: 150,
           density: { enable: true, area: 800 },
         },
         opacity: { value: 0.5 },
         shape: { type: "circle" },
         size: { value: { min: 1, max: 5 } },
       },
-      detectRetina: true, // High resolution
+      detectRetina: true,
     }),
     []
   );
 
   return (
-    <div className="relative min-h-screen pt-20 flex flex-col">
+    <div className="relative min-h-[90vh] h-[90vh] overflow-hidden">
       {/* Particles Background */}
       {init && (
         <Particles
@@ -83,19 +91,19 @@ const Hero = () => {
       )}
 
       {/* Hero Content */}
-      <div className="relative z-10 flex-grow flex items-center justify-center">
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
         <motion.div
           animate={{
-            y: [0, -10, 0], // Floating effect
+            y: [0, -10, 0],
           }}
           transition={{
             duration: 5,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="text-center"
+          className="text-center -mt-20"
         >
-          <h1 className="text-white font-['Bebas_Neue'] text-4xl md:text-6xl lg:text-8xl leading-tight select-none">
+          <h1 className="text-white font-bebas text-4xl md:text-6xl lg:text-8xl leading-tight select-none">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -130,6 +138,32 @@ const Hero = () => {
             </motion.span>
           </h1>
         </motion.div>
+
+        {/* Scroll Down Arrow */}
+        <motion.button
+          onClick={scrollToNews}
+          className="absolute bottom-12 text-white/60 hover:text-white/90 transition-colors cursor-pointer"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ 
+            opacity: 1, 
+            y: 0,
+          }}
+          transition={{ duration: 0.6, delay: 1 }}
+          whileHover={{ scale: 1.1 }}
+        >
+          <motion.div
+            animate={{
+              y: [0, 5, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <ChevronDownIcon className="h-9 w-9 stroke-[1]" />
+          </motion.div>
+        </motion.button>
       </div>
     </div>
   );

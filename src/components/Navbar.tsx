@@ -5,14 +5,17 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from 'next/navigation';
 
 const navItems = ["ABOUT", "PEOPLE", "RESEARCH", "BLOG", "CONTACT"];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#293351] text-white p-4">
+    <nav className={`fixed top-0 left-0 right-0 z-50 p-4 ${isHomePage ? 'bg-transparent' : 'bg-[#293351]'} text-white`}>
       {/* Top-level row: Logo (left) + Hamburger (right) */}
       <div className="flex items-center justify-between">
         {/* Logo */}
@@ -57,7 +60,7 @@ const Navbar = () => {
           {/* Dropdown with a scale/fade animation */}
           <div
             className={`
-              absolute right-0 mt-2 bg-[#293351]
+              absolute right-0 mt-2 ${isHomePage ? 'bg-[#293351]/90' : 'bg-[#293351]'}
               overflow-hidden transform transition-transform duration-300 origin-top
               ${isOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"}
             `}
