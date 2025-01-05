@@ -16,10 +16,10 @@ export default function ContactPage() {
               <div>
                 <h3 className="font-medium">Address</h3>
                 <p className="text-gray-600">
-                  Building 301, Room XXX<br />
-                  Seoul National University<br />
-                  1 Gwanak-ro, Gwanak-gu<br />
-                  Seoul, South Korea
+                  Engineering Building, Room 301<br />
+                  Yonsei University<br />
+                  85 Songdogwahak-ro, Yeonsu-gu<br />
+                  Incheon, South Korea
                 </p>
               </div>
             </div>

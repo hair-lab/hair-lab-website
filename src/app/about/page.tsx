@@ -8,7 +8,7 @@ export default function AboutPage() {
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
         <p className="text-gray-700 mb-6">
-          The Human AI Lab at Seoul National University is dedicated to advancing the intersection of human intelligence and artificial intelligence. Our research focuses on developing AI systems that complement and enhance human capabilities while ensuring they remain aligned with human values and needs.
+          The Human AI Lab at Yonsei University is dedicated to advancing the intersection of human intelligence and artificial intelligence. Our research focuses on developing AI systems that complement and enhance human capabilities while ensuring they remain aligned with human values and needs.
         </p>
       </section>
 

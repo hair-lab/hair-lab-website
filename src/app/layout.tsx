@@ -6,6 +6,10 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'HAIR Lab - Human AI Research Lab',
   description: 'Human AI Research Laboratory at Yonsei University',
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
 }
 
 export default function RootLayout({
@@ -17,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow pt-24"> {/* Added pt-24 for 96px top padding */}
+        <main className="flex-grow pt-24">
           {children}
         </main>
         <Footer />
