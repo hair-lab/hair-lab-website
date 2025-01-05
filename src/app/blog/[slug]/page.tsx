@@ -2,14 +2,9 @@ import { notFound } from 'next/navigation';
 import { getPostBySlug } from '@/utils/blogUtils';
 import ReactMarkdown from 'react-markdown';
 
-interface BlogPostProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default function BlogPost({ params }: BlogPostProps) {
-  const post = getPostBySlug(params.slug);
+export default async function Page({params}: {params: Promise<{ slug: string }>}) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   
   if (!post) {
     notFound();

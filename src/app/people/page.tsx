@@ -79,7 +79,7 @@ export default function PeoplePage() {
       <section className="mt-16">
         <h2 className="text-2xl font-semibold mb-6 text-center">Join Our Team</h2>
         <p className="text-gray-700 text-center max-w-2xl mx-auto">
-          We are always looking for talented researchers who are passionate about human-AI interaction and cognitive science. If you're interested in joining our lab, please check our contact page for application details.
+          We are always looking for talented researchers who are passionate about human-AI interaction and cognitive science. If you&apos;re interested in joining our lab, please check our contact page for application details.
         </p>
       </section>
     </div>

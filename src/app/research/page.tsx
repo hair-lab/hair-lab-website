@@ -4,9 +4,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
-import { publications, getCategories, Publication } from '@/data/publications';
+import { publications, getCategories } from '@/data/publications';
 
-// 1) Define the type for your Projects
 interface ResearchProject {
   title: string;
   category: string;
@@ -15,7 +14,6 @@ interface ResearchProject {
   status: 'ongoing' | 'completed';
 }
 
-// 2) Provide your Projects array (You can also import from a separate file if you prefer)
 const projects: ResearchProject[] = [
   {
     title: "AI and Animal Behavior",
@@ -38,7 +36,6 @@ const projects: ResearchProject[] = [
     image: "/images/research3.jpg",
     status: "completed"
   },
-  // Add more projects as needed
 ];
 
 export default function ResearchPage() {
@@ -48,25 +45,21 @@ export default function ResearchPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 5;
 
-  // 3) Filter the Projects based on the selected filter
   const filteredProjects = projects.filter((project) =>
     projectFilter === 'all' ? true : project.status === projectFilter
   );
 
-  // 4) Prepare categories for Publications
   const categories = ['all', ...getCategories()];
 
-  // 5) Filter and sort Publications
   const filteredAndSortedPubs = publications
     .filter((pub) => (pubCategory === 'all' ? true : pub.category === pubCategory))
     .sort((a, b) => {
       if (sortBy === 'year') {
-        return b.year - a.year;  // Descending year
+        return b.year - a.year;
       }
       return a.title.localeCompare(b.title);
     });
 
-  // 6) Pagination for Publications
   const totalPages = Math.ceil(filteredAndSortedPubs.length / ITEMS_PER_PAGE);
   const paginatedPubs = filteredAndSortedPubs.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
@@ -77,7 +70,6 @@ export default function ResearchPage() {
     <div className="max-w-6xl mx-auto py-16 px-6">
       <h1 className="text-4xl font-bold mb-12">Research</h1>
 
-      {/* Projects Section */}
       <section className="mb-16">
         <h2 className="text-2xl font-bold mb-6">Current Projects</h2>
         <div className="flex gap-4 mb-8">
@@ -132,11 +124,9 @@ export default function ResearchPage() {
         </div>
       </section>
 
-      {/* Publications Section */}
       <section>
         <h2 className="text-2xl font-bold mb-6">Publications</h2>
 
-        {/* Publications Filters */}
         <div className="flex flex-wrap gap-4 mb-8">
           <div className="flex items-center gap-4">
             <label className="text-gray-700">Category:</label>
@@ -144,7 +134,7 @@ export default function ResearchPage() {
               value={pubCategory}
               onChange={(e) => {
                 setPubCategory(e.target.value);
-                setCurrentPage(1); // Reset to the first page
+                setCurrentPage(1);
               }}
               className="px-4 py-2 border border-gray-200 rounded-lg"
             >
@@ -161,7 +151,7 @@ export default function ResearchPage() {
               value={sortBy}
               onChange={(e) => {
                 setSortBy(e.target.value as 'year' | 'title');
-                setCurrentPage(1); // Reset to the first page
+                setCurrentPage(1);
               }}
               className="px-4 py-2 border border-gray-200 rounded-lg"
             >
@@ -171,7 +161,6 @@ export default function ResearchPage() {
           </div>
         </div>
 
-        {/* Publications List */}
         <div className="space-y-6 mb-8">
           {paginatedPubs.map((pub) => (
             <Link
@@ -206,7 +195,6 @@ export default function ResearchPage() {
           ))}
         </div>
 
-        {/* Publications Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center gap-2">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (

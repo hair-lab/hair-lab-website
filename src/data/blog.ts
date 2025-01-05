@@ -6,6 +6,7 @@ export interface BlogPost {
   excerpt: string;
   tags: string[];
   content: string;
+  readingTime?: string;  // Added readingTime as optional property
 }
 
 export const blogPosts: BlogPost[] = [

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { BlogPost, SortOption, filterPosts, getAllPosts, getAllTags } from '@/utils/blogUtils';
+import { SortOption, filterPosts, getAllPosts, getAllTags } from '@/utils/blogUtils';
 
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState('');
