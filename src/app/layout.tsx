@@ -7,8 +7,17 @@ export const metadata: Metadata = {
   title: 'HAIR Lab - Human AI Research Lab',
   description: 'Human AI Research Laboratory at Yonsei University',
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: [
+      { url: '/logo.png', type: 'image/png' },
+    ],
+    shortcut: '/logo.png',
+    apple: [
+      { url: '/logo.png' },
+    ],
+    other: {
+      rel: 'apple-touch-icon-precomposed',
+      url: '/logo.png',
+    },
   },
 }
 
