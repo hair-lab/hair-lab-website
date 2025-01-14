@@ -82,6 +82,15 @@ export const peopleData: Record<string, Person> = {
     linkedin: "https://www.linkedin.com/in/jaewoo-lee-921a6b241/",
     bio: "M.S. in Innovation, Yonsei University\nB.A. in Science Technology and Policy, Yonsei University\nB.A. in Psychology, Yonsei University"
   },
+  'lucas' : {
+    name: "Lucas Farias Ferreira Gomes",
+    title: "Researcher, Masters Student",
+    image: "/images/lucas.jpg",
+    email: "seongminc0119@gmail.com",
+    github: "https://github.com/LucasFr127",
+    linkedin: "https://www.linkedin.com/in/seongminc/",
+    bio: "M.S. in Innovation, Yonsei University \nBS in Digital Systems and Media at Federal University of Ceara"
+  },
   'seongmin-chang' : {
     name: "Seongmin Chang",
     title: "Researcher, Undergraduate Student",
@@ -90,14 +99,5 @@ export const peopleData: Record<string, Person> = {
     github: "https://github.com/takeachangs",
     linkedin: "https://www.linkedin.com/in/seongminc/",
     bio: "HBSc in Mathematics and Its Applications: Probability/Statistics, University of Toronto"
-  },
-  'lucas' : {
-    name: "Lucas",
-    title: "Researcher, Masters Student",
-    image: "/images/lucas.jpg",
-    email: "seongminc0119@gmail.com",
-    github: "https://github.com/hair-lab",
-    linkedin: "https://www.linkedin.com/in/seongminc/",
-    bio: "M.S. in Innovation, Yonsei University"
   }
 };
