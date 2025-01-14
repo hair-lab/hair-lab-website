@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-xl font-semibold mb-4">Human AI Lab</h3>
+            <h3 className="text-xl font-semibold mb-4">Human & Artificial Intelligence Research Lab</h3>
             <p className={`${isHomePage ? 'text-white' : 'text-gray-300'} mb-4`}>
               Advancing the intersection of human intelligence and artificial intelligence at Yonsei University.
             </p>
@@ -30,11 +30,15 @@ export default function Footer() {
                 <Link href="/about" className={`${isHomePage ? 'text-white hover:text-gray-200' : 'text-gray-300 hover:text-white'} transition-colors`}>About</Link>
               </li>
               <li>
+                <Link href="/people" className={`${isHomePage ? 'text-white hover:text-gray-200' : 'text-gray-300 hover:text-white'} transition-colors`}>People</Link>
+              </li>
+              <li>
                 <Link href="/research" className={`${isHomePage ? 'text-white hover:text-gray-200' : 'text-gray-300 hover:text-white'} transition-colors`}>Research</Link>
               </li>
               <li>
-                <Link href="/people" className={`${isHomePage ? 'text-white hover:text-gray-200' : 'text-gray-300 hover:text-white'} transition-colors`}>People</Link>
+                <Link href="/project" className={`${isHomePage ? 'text-white hover:text-gray-200' : 'text-gray-300 hover:text-white'} transition-colors`}>Project</Link>
               </li>
+
               <li>
                 <Link href="/blog" className={`${isHomePage ? 'text-white hover:text-gray-200' : 'text-gray-300 hover:text-white'} transition-colors`}>Blog</Link>
               </li>

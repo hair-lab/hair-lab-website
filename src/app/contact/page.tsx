@@ -28,7 +28,7 @@ export default function ContactPage() {
               <EnvelopeIcon className="w-6 h-6 text-gray-600 mt-1" />
               <div>
                 <h3 className="font-medium">Email</h3>
-                <p className="text-gray-600">contact@humanailab.org</p>
+                <p className="text-gray-600">keeheon@yonsei.ac.kr</p>
               </div>
             </div>
 

@@ -3,23 +3,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
-
-// Move peopleData to a separate file for better organization
 import { peopleData } from '@/data/people';
 
-// Generate static paths for all people
 export async function generateStaticParams() {
   return Object.keys(peopleData).map((slug) => ({
     slug: slug,
   }));
 }
 
-interface PageProps {
-  params: { slug: string };
-}
-
-export default function PersonPage({ params }: PageProps) {
-  const person = peopleData[params.slug as keyof typeof peopleData];
+export default async function PersonPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const person = peopleData[slug as keyof typeof peopleData];
 
   if (!person) {
     notFound();
