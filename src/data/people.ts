@@ -27,6 +27,16 @@ export const peopleData: Record<string, Person> = {
     linkedin: "https://linkedin.com/in/researcher1",
     bio: "Pursuing M.S. in Innovation, Yonsei University \nB.S. in Creative Technology Manangement, Yonsei University"
   },
+  'abebe-gasparini': {
+    name: "Abebe Gasparini",
+    title: "Researcher, Masters Student",
+    image: "/images/abebe.jpg",
+    email: "abebe.gasparini@yonsei.ac.kr",
+    github: "https://github.com/Abebe-Gasparini",
+    linkedin: "https://www.linkedin.com/in/abebe-gasparini/",
+    bio: "Pursuing M.S. in Innovation, Yonsei University \nM.A. in Politics and Societies of East Asia,University of Tübingen \nB.A. Applied Linguistics and European Studies, University of Modena and Reggio Emilia"
+  },
+
   'arina-svetasheva': {
     name: "Arina Svetasheva",
     title: "Researcher, Alumni",
@@ -35,6 +45,15 @@ export const peopleData: Record<string, Person> = {
     github: "https://github.com/RikhterK",
     linkedin: "https://www.linkedin.com/in/arina-svetasheva-446426225/",
     bio: "M.S. in Innovation, Yonsei University \nB.S. in Management, NEOMA Business School \nB.S. in International Management, The Russian Presidential Academy of National Economy and Public Administration"
+  },
+  'galih-arumsari': {
+    name: "Galih Arumsari",
+    title: "Researcher, Alumni",
+    image: "/images/arina.jpg",
+    email: "galih.arumsari@yonsei.ac.kr",
+    github: "https://github.com/hair-lab",
+    linkedin: "linkedin.com/in/galih-arumsari-284993105",
+    bio: "Pursuing M.S. in Innovation, Yonsei University \nBachelor in Economics, Gadjah Mada University \nBachelor in Management, Toulouse Business School"  
   },
   'hyegang-kim': {
     name: "Hyegang Kim",
@@ -50,7 +69,7 @@ export const peopleData: Record<string, Person> = {
     title: "Researcher, Masters Student",
     image: "/images/minjae.jpg",
     email: "mjddol@yonsei.ac.kr",
-    github: "https://github.com/researcher4",
+    github: "hhttps://github.com/hair-lab",
     linkedin: "https://linkedin.com/in/researcher4",
     bio: "Pursuing M.S in Innovation, Yonsei University \nB.S. in Creative Technology Management\nB.A. in Economics, Yonsei University"
   },
@@ -71,6 +90,14 @@ export const peopleData: Record<string, Person> = {
     github: "https://github.com/takeachangs",
     linkedin: "https://www.linkedin.com/in/seongminc/",
     bio: "HBSc in Mathematics and Its Applications: Probability/Statistics, University of Toronto"
-
+  },
+  'lucas' : {
+    name: "Lucas",
+    title: "Researcher, Masters Student",
+    image: "/images/lucas.jpg",
+    email: "seongminc0119@gmail.com",
+    github: "https://github.com/hair-lab",
+    linkedin: "https://www.linkedin.com/in/seongminc/",
+    bio: "M.S. in Innovation, Yonsei University"
   }
 };
