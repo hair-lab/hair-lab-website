@@ -19,7 +19,7 @@ export default function BlogSection() {
           transition={{ duration: 0.8 }}
           className="mb-12"
         >
-          <h2 className="text-white font-bebas text-5xl mb-2">AI News & Insights</h2>
+          <h2 className="text-white font-bebas text-5xl mb-2">News & Insights</h2>
         </motion.div>
 
         <div className="space-y-8">
