@@ -36,7 +36,7 @@ export default function Footer() {
                 <Link href="/research" className={`${isHomePage ? 'text-white hover:text-gray-200' : 'text-gray-300 hover:text-white'} transition-colors`}>Research</Link>
               </li>
               <li>
-                <Link href="/project" className={`${isHomePage ? 'text-white hover:text-gray-200' : 'text-gray-300 hover:text-white'} transition-colors`}>Project</Link>
+                <Link href="/projects" className={`${isHomePage ? 'text-white hover:text-gray-200' : 'text-gray-300 hover:text-white'} transition-colors`}>Projects</Link>
               </li>
 
               <li>
