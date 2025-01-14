@@ -36,7 +36,7 @@ export default function ContactPage() {
               <PhoneIcon className="w-6 h-6 text-gray-600 mt-1" />
               <div>
                 <h3 className="font-medium">Phone</h3>
-                <p className="text-gray-600">+82-2-XXX-XXXX</p>
+                <p className="text-gray-600">+82-32-749-3610</p>
               </div>
             </div>
           </div>

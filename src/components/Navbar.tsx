@@ -7,7 +7,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from 'next/navigation';
 
-const navItems = ["ABOUT", "PEOPLE", "RESEARCH", "BLOG", "CONTACT"];
+const navItems = ["ABOUT", "PEOPLE", "PROJECT", "RESEARCH", "BLOG", "CONTACT"];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
