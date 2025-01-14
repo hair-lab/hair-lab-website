@@ -1,12 +1,12 @@
 import Hero from '@/components/Hero';
-import ResearchGallery from '@/components/ResearchGallery';
+import ProjectGallery from '@/components/ProjectGallery';
 import BlogSection from '@/components/BlogSection';
 
 export default function Home() {
   return (
     <main>
       <Hero />
-      <ResearchGallery />
+      <ProjectGallery />
       <BlogSection />
     </main>
   );

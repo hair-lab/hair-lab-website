@@ -1,56 +1,20 @@
 "use client";
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { publications, getCategories } from '@/data/publications';
 
-interface ResearchProject {
-  title: string;
-  category: string;
-  description: string;
-  image: string;
-  status: 'ongoing' | 'completed';
-}
-
-const projects: ResearchProject[] = [
-  {
-    title: "AI and Animal Behavior",
-    category: "Human-AI Interaction",
-    description: "Studying patterns in animal behavior to inform AI development and create more naturalistic interaction models.",
-    image: "/images/research1.jpg",
-    status: "ongoing"
-  },
-  {
-    title: "Human Perception Studies",
-    category: "Human-AI Interaction",
-    description: "Investigating how humans perceive and interact with AI systems in various contexts and environments.",
-    image: "/images/research2.jpg",
-    status: "ongoing"
-  },
-  {
-    title: "Environmental AI Systems",
-    category: "AI Applications",
-    description: "Developing AI systems that can adapt to and operate effectively in diverse environmental conditions.",
-    image: "/images/research3.jpg",
-    status: "completed"
-  },
-];
-
 export default function ResearchPage() {
-  const [projectFilter, setProjectFilter] = useState<'all' | 'ongoing' | 'completed'>('all');
+  const ITEMS_PER_PAGE = 5;
+  
+  // Publication filters and pagination
   const [pubCategory, setPubCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'year' | 'title'>('year');
-  const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 5;
+  const [pubPage, setPubPage] = useState(1);
 
-  const filteredProjects = projects.filter((project) =>
-    projectFilter === 'all' ? true : project.status === projectFilter
-  );
-
+  // Publication filtering and pagination logic
   const categories = ['all', ...getCategories()];
-
   const filteredAndSortedPubs = publications
     .filter((pub) => (pubCategory === 'all' ? true : pub.category === pubCategory))
     .sort((a, b) => {
@@ -60,69 +24,15 @@ export default function ResearchPage() {
       return a.title.localeCompare(b.title);
     });
 
-  const totalPages = Math.ceil(filteredAndSortedPubs.length / ITEMS_PER_PAGE);
+  const totalPubPages = Math.ceil(filteredAndSortedPubs.length / ITEMS_PER_PAGE);
   const paginatedPubs = filteredAndSortedPubs.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
+    (pubPage - 1) * ITEMS_PER_PAGE,
+    pubPage * ITEMS_PER_PAGE
   );
 
   return (
     <div className="max-w-6xl mx-auto py-16 px-6">
       <h1 className="text-4xl font-bold mb-12">Research</h1>
-
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-6">Current Projects</h2>
-        <div className="flex gap-4 mb-8">
-          {['all', 'ongoing', 'completed'].map((status) => (
-            <button
-              key={status}
-              onClick={() => setProjectFilter(status as typeof projectFilter)}
-              className={`px-4 py-2 rounded-lg border ${
-                projectFilter === status
-                  ? 'bg-gray-800 text-white border-gray-800'
-                  : 'border-gray-200 text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              {status.charAt(0).toUpperCase() + status.slice(1)}
-            </button>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.title}
-              className="border border-gray-200 rounded-lg overflow-hidden hover:border-gray-300 transition-colors"
-            >
-              <div className="relative aspect-video bg-gray-100">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-gray-600">{project.category}</span>
-                  <span
-                    className={`text-sm px-2 py-1 rounded ${
-                      project.status === 'ongoing'
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-blue-100 text-blue-800'
-                    }`}
-                  >
-                    {project.status}
-                  </span>
-                </div>
-                <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
-                <p className="text-gray-700">{project.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       <section>
         <h2 className="text-2xl font-bold mb-6">Publications</h2>
@@ -134,7 +44,7 @@ export default function ResearchPage() {
               value={pubCategory}
               onChange={(e) => {
                 setPubCategory(e.target.value);
-                setCurrentPage(1);
+                setPubPage(1);
               }}
               className="px-4 py-2 border border-gray-200 rounded-lg"
             >
@@ -151,7 +61,7 @@ export default function ResearchPage() {
               value={sortBy}
               onChange={(e) => {
                 setSortBy(e.target.value as 'year' | 'title');
-                setCurrentPage(1);
+                setPubPage(1);
               }}
               className="px-4 py-2 border border-gray-200 rounded-lg"
             >
@@ -195,14 +105,14 @@ export default function ResearchPage() {
           ))}
         </div>
 
-        {totalPages > 1 && (
+        {totalPubPages > 1 && (
           <div className="flex justify-center gap-2">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            {Array.from({ length: totalPubPages }, (_, i) => i + 1).map((page) => (
               <button
                 key={page}
-                onClick={() => setCurrentPage(page)}
+                onClick={() => setPubPage(page)}
                 className={`px-4 py-2 rounded-lg border ${
-                  currentPage === page
+                  pubPage === page
                     ? 'bg-gray-800 text-white border-gray-800'
                     : 'border-gray-200 text-gray-700 hover:bg-gray-50'
                 }`}

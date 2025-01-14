@@ -5,21 +5,31 @@ import Link from "next/link";
 import Image from 'next/image';
 import { researchProjects } from '@/data/research';
 
-export default function ResearchGallery() {
+export default function ProjectGallery() {
+  // Sort projects by status (ongoing first) and take the 3 most recent
+  const recentProjects = [...researchProjects]
+    .sort((a, b) => {
+      // Sort ongoing projects first
+      if (a.status === 'ongoing' && b.status !== 'ongoing') return -1;
+      if (a.status !== 'ongoing' && b.status === 'ongoing') return 1;
+      return 0;
+    })
+    .slice(0, 3);
+
   return (
-    <section id="research" className="relative py-20">
+    <section id="projects" className="relative py-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="text-center mb-12"
       >
-        <h2 className="text-white font-bebas text-5xl">RESEARCH AREAS</h2>
+        <h2 className="text-white font-bebas text-5xl">FEATURED PROJECTS</h2>
       </motion.div>
 
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {researchProjects.map((project, index) => (
+          {recentProjects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 20 }}
@@ -30,7 +40,7 @@ export default function ResearchGallery() {
               }}
               className="relative"
             >
-              <Link href={`/research/${project.id}`}>
+              <Link href={`/projects/${project.id}`}>
                 <motion.div
                   animate={{
                     y: [0, -5, 0],
@@ -81,12 +91,12 @@ export default function ResearchGallery() {
           className="flex justify-center"
         >
           <Link 
-            href="/research" 
+            href="/projects" 
             className="group relative px-8 py-3 text-white overflow-hidden rounded-full backdrop-blur-sm border border-white/20 hover:border-white/40 transition-colors"
           >
             <div className="absolute inset-0 bg-white/10 group-hover:bg-white/20 transition-colors"></div>
             <span className="relative font-bebas tracking-wider text-lg">
-              EXPLORE OUR RESEARCH
+              VIEW ALL PROJECTS
             </span>
           </Link>
         </motion.div>
