@@ -49,7 +49,7 @@ export const peopleData: Record<string, Person> = {
   'galih-arumsari': {
     name: "Galih Arumsari",
     title: "Researcher, Alumni",
-    image: "/images/arina.jpg",
+    image: "/images/galih.jpg",
     email: "galih.arumsari@yonsei.ac.kr",
     github: "https://github.com/hair-lab",
     linkedin: "linkedin.com/in/galih-arumsari-284993105",
